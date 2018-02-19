@@ -14,7 +14,8 @@ public class SOTAListener {
     private int portNumber;
 
     public static void main(String[] args){
-
+        SOTAListener listener = new SOTAListener();
+        listener.run();
     }
 
     public void run(){
