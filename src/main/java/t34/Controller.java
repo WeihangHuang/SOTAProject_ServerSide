@@ -27,7 +27,14 @@ public class Controller {
             e.printStackTrace();
         }
 
-        return labels.get(0);
+        if (labels.contains("money")) {
+            System.out.println("Money");
+            return "story_one";
+        }
+        else if (labels.contains("bottle"))
+            return "story_two";
+        else
+            return null;
     }
 
     public void displayImage(String label) {

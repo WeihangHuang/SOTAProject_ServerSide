@@ -57,7 +57,7 @@ public class ImageClassifier {
                 }
             }
         }
-
+        System.out.println(labels); //this line print out all the label get back from google
         return labels;
     }
 }

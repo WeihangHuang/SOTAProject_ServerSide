@@ -1,8 +1,8 @@
 package t34;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -11,7 +11,7 @@ import java.net.Socket;
  */
 public class SOTAListener {
 
-    private int portNumber;
+    private int portNumber = 9999;
 
     public static void main(String[] args){
         SOTAListener listener = new SOTAListener();
@@ -36,13 +36,28 @@ public class SOTAListener {
                     case 1://incoming data is byte array of the image
 
                         int imageSize = in.readInt();
+
                         byte[] image = new byte[imageSize];
+
+                        in.readFully(image);
+
+                        BufferedImage pic = null;                   //from line 44-51 it save the picture in SOTAServer
+                        try{                                        //folder. Only for test.
+                            pic = ImageIO.read(new ByteArrayInputStream(image));
+                            File outFile = new File("./testImage.jpg");
+                            ImageIO.write(pic, "jpg", outFile);
+                        } catch (Exception e){
+                            e.printStackTrace();
+                        }
+
                         String label = controller.getLabel(image); //extract most relevant label from image
-                        out.writeChars(label); //write label back to SOTA and inform SOTA which story to tell
+                        out.writeUTF(label); //write label back to SOTA and inform SOTA which story to tell
+                        out.flush();
 
 
                         controller.displayImage(label);//display the first story image
                         out.writeBoolean(true); //tell SOTA can start telling story
+                        out.flush();
 
                         break;
 
@@ -50,6 +65,7 @@ public class SOTAListener {
                         //inform the current audio is played
                         controller.displayNextImage();
                         out.writeBoolean(true);
+                        out.flush();
                         break;
 
                     case 3:
