@@ -10,4 +10,5 @@ public interface ImageDisplayerInterface {
     void displayNext();
 
 
+    void closeImage();
 }

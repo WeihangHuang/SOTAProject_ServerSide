@@ -27,11 +27,10 @@ public class Controller {
             e.printStackTrace();
         }
 
-        if (labels.contains("money")) {
-            System.out.println("Money");
+        if (labels.contains("bottle")) {
             return "story_one";
         }
-        else if (labels.contains("bottle"))
+        else if (labels.contains("hand"))
             return "story_two";
         else
             return null;
@@ -44,4 +43,6 @@ public class Controller {
     public void displayNextImage(){
         imageDisplayer.displayNext();
     }
+
+    public void closeImage() { imageDisplayer.closeImage();}
 }

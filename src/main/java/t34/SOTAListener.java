@@ -71,6 +71,7 @@ public class SOTAListener {
                     case 3:
                         //client side is turing down -- server side should go down as well
                         serverDown = true;
+                        controller.closeImage();
                         break;
                     default:
                         break;

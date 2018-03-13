@@ -15,7 +15,7 @@ public class ImageDisplayerTest {
     @Test
     public void canDisplayImage(){
         try {
-            displayer.displayImage("dog");
+            displayer.displayImage("story_two");
             TimeUnit.SECONDS.sleep(5);
             displayer.displayNext();
             TimeUnit.SECONDS.sleep(5);

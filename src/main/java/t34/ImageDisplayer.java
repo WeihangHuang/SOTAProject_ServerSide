@@ -1,6 +1,6 @@
 package t34;
 
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -34,17 +34,22 @@ public class ImageDisplayer implements ImageDisplayerInterface {
     @Override
     public void displayNext() {
         counter++;
-        closePreviouse();
+        closeImage();
         filepath = "./resources/" + story + "_" + counter + ".jpg";
 
         display(filepath);
     }
 
+    @Override
+    public void closeImage() {
+        frame.dispose();
+    }
+
     private void display(String filepath){
-        BufferedImage img= null;
+        BufferedImage img = null;
         try {
             img = ImageIO.read(new File(filepath));
-            ImageIcon icon = new ImageIcon(img);
+            ImageIcon icon = new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(1400, 900, Image.SCALE_DEFAULT));
             this.frame = new JFrame();
             frame.setLayout(new FlowLayout());
             frame.setSize(1400, 900);
@@ -59,7 +64,5 @@ public class ImageDisplayer implements ImageDisplayerInterface {
 
     }
 
-    private void closePreviouse(){
-        frame.dispose();
-    }
+
 }
