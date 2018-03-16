@@ -13,11 +13,6 @@ public class SOTAListener {
 
     private int portNumber = 9999;
 
-    public static void main(String[] args){
-        SOTAListener listener = new SOTAListener();
-        listener.run();
-    }
-
     public void run(){
 
         Controller controller = new Controller();
