@@ -1,10 +1,12 @@
 package t34;
 
+import sun.nio.ch.Net;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
+import java.util.Enumeration;
 
 /**
  * Created by apple on 2/15/18.
@@ -16,6 +18,9 @@ public class SOTAListener {
     public void run(){
 
         Controller controller = new Controller();
+
+        System.out.println("Server ready. The IP address is:");
+        printLocalAddress();
 
         try {
             ServerSocket serverSocket = new ServerSocket(portNumber);
@@ -78,6 +83,25 @@ public class SOTAListener {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void printLocalAddress() {
+        Enumeration enumeration = null;
+        try{
+            enumeration = NetworkInterface.getNetworkInterfaces();
+        } catch (SocketException e){
+            e.printStackTrace();
+        }
+
+        while(enumeration.hasMoreElements()){
+            NetworkInterface n = (NetworkInterface) enumeration.nextElement();
+            Enumeration ee = n.getInetAddresses();
+            while (ee.hasMoreElements()){
+                InetAddress i = (InetAddress) ee.nextElement();
+                if (i.isSiteLocalAddress())
+                    System.out.println(i.getHostAddress());
+            }
         }
     }
 }
