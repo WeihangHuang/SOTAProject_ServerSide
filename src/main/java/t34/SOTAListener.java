@@ -50,7 +50,8 @@ public class SOTAListener {
                             e.printStackTrace();
                         }
 
-                        String label = controller.getLabel(image); //extract most relevant label from image
+                        //String label = controller.getLabel(image); //extract most relevant label from image
+                        String label = controller.getStoryFromDb(image); //extract most relevant story from the database after getting the labels from image
                         out.writeUTF(label); //write label back to SOTA and inform SOTA which story to tell
                         out.flush();
 
@@ -63,7 +64,6 @@ public class SOTAListener {
 
                     case 2:
                         //inform the current audio is played
-                        controller.displayNextImage();
                         out.writeBoolean(true);
                         out.flush();
                         break;
@@ -72,6 +72,10 @@ public class SOTAListener {
                         //client side is turing down -- server side should go down as well
                         serverDown = true;
                         controller.closeImage();
+                        break;
+
+                    case 4:
+                        controller.displayNextImage();
                         break;
                     default:
                         break;

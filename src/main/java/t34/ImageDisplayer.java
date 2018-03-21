@@ -26,7 +26,7 @@ public class ImageDisplayer implements ImageDisplayerInterface {
     @Override
     public void displayImage(String label) {
         story = label;
-        filepath = "./resources/" + story + "_" + counter + ".jpg"; //need to adjust
+        filepath = "./resources/" + story  + "/" +counter + ".jpg"; //need to adjust
 
         display(filepath);
     }
@@ -35,7 +35,7 @@ public class ImageDisplayer implements ImageDisplayerInterface {
     public void displayNext() {
         counter++;
         closeImage();
-        filepath = "./resources/" + story + "_" + counter + ".jpg";
+        filepath = "./resources/" + story  + "/"+ counter + ".jpg";
 
         display(filepath);
     }

@@ -101,5 +101,7 @@
     <orderEntry type="library" name="Maven: io.netty:netty-codec-socks:4.1.16.Final" level="project" />
     <orderEntry type="library" name="Maven: io.grpc:grpc-stub:1.7.0" level="project" />
     <orderEntry type="library" name="Maven: io.grpc:grpc-auth:1.7.0" level="project" />
+    <orderEntry type="library" name="junit:junit:4.12" level="project" />
+    <orderEntry type="library" name="hsqldb" level="project" />
   </component>
 </module>
